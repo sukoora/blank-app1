@@ -23,8 +23,8 @@ placeholder.empty()
 
 import time
 
-with st.empty():
-    for seconds in range(60):
-        st.button(f"Refresh")
-        time.sleep(1)
-    st.write("✔️ 1 minute over!")
+ph = st.empty()
+for seconds in range(60):
+    ph.button(f"Refresh")
+    time.sleep(1)
+st.write("✔️ 1 minute over!")
