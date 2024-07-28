@@ -24,7 +24,7 @@ placeholder.empty()
 import time
 
 ph = st.empty()
-for x in range(60):
+for x in range(5):
     ph.button(f"Refresh", key=f'refresh_{x}')
     time.sleep(1)
 st.write("✔️ 1 minute over!")
