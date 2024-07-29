@@ -1,30 +1,25 @@
 import streamlit as st
+from dataclasses import dataclass
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
+@dataclass
+class Option:
+    name: str
+    is_selected: bool = False
 
-placeholder = st.empty()
+# Sample data
+options = [Option(name=f"Option {i}") for i in range(1, 6)]
 
-# Replace the placeholder with some text:
-placeholder.text("Hello")
+def main():
+    st.title("Dynamic List with Checkboxes")
 
-# Replace the text with a chart:
-placeholder.line_chart({"data": [1, 5, 2, 6]})
+    # Dynamic checkboxes without keys
+    for option in options:
+        option.is_selected = st.checkbox(option.name, value=option.is_selected)
 
-# Replace the chart with several elements:
-with placeholder.container():
-    st.write("This is one element")
-    st.write("This is another")
+    # Button to display selected options
+    if st.button("Show Selected Options"):
+        selected_options = [option.name for option in options if option.is_selected]
+        st.write("Selected Options:", selected_options)
 
-# Clear all those elements:
-placeholder.empty()
-
-import time
-
-ph = st.empty()
-for x in range(5):
-    ph.button(f"Refresh", key=f'refresh_{x}')
-    time.sleep(1)
-st.write("✔️ 1 minute over!")
+if __name__ == "__main__":
+    main()
